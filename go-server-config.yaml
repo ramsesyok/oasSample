@@ -1,0 +1,17 @@
+# Enable Cross-Origin Resource Sharing middleware (Default: false)
+featureCORS: true
+
+# Hides the generation timestamp when files are generated. (Default: true)
+hideGenerationTimestamp: true
+
+# Go package name (convention: lowercase). (Default: openapi)
+packageName: openapi
+
+# Go package version. (Default: 1.0.0)
+packageVersion: 1.0.0
+
+# The network port the generated server binds to (Default: 8080)
+serverPort: 3000
+
+# source folder for generated code (Default: go)
+sourceFolder: openapi

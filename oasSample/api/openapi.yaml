@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: samplename
+  description: OpenAPI Sample with Go
+  title: OasSample
+  version: "1.0"
+servers:
+- url: http://localhost:3000
+tags:
+- description: sampledata
+  name: sampledata
+paths:
+  /sampleData/{data_id}:
+    get:
+      description: Get SampleData
+      operationId: get-sampleData-data_id
+      parameters:
+      - explode: false
+        in: path
+        name: data_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SampleData'
+          description: OK
+      summary: Get SampleData
+      tags:
+      - sampledata
+    put:
+      description: Update SampleData
+      operationId: put-sampleData-data_id
+      parameters:
+      - explode: false
+        in: path
+        name: data_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SampleData'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SampleResponse'
+          description: OK
+      summary: Update SampleData
+      tags:
+      - sampledata
+components:
+  schemas:
+    SampleData:
+      description: Sample Data Model
+      example:
+        value2: 6
+        data_id: data_id
+        value1: 0.8008281904610115
+        items: items
+      properties:
+        data_id:
+          type: string
+        value1:
+          type: number
+        value2:
+          type: integer
+        items:
+          type: string
+      title: SampleData
+      type: object
+    SampleResponse:
+      example:
+        level: level
+        errorid: errorid
+        message: message
+      properties:
+        errorid:
+          type: string
+        level:
+          type: string
+        message:
+          type: string
+      title: SampleResponse
+      type: object

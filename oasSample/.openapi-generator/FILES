@@ -1,0 +1,12 @@
+Dockerfile
+README.md
+api\openapi.yaml
+go.mod
+main.go
+openapi\api.go
+openapi\api_sampledata.go
+openapi\api_sampledata_service.go
+openapi\logger.go
+openapi\model_sample_data.go
+openapi\model_sample_response.go
+openapi\routers.go

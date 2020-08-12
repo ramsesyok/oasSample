@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: OasSample
+  version: '1.0'
+  contact:
+    name: samplename
+  description: OpenAPI Sample with Go
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: sampledata
+    description: sampledata
+paths:
+  '/sampleData/{data_id}':
+    parameters:
+      - schema:
+          type: string
+        name: data_id
+        in: path
+        required: true
+    get:
+      summary: Get SampleData
+      tags:
+        - sampledata
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SampleData'
+      operationId: get-sampleData-data_id
+      description: Get SampleData
+    put:
+      summary: Update SampleData
+      operationId: put-sampleData-data_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SampleResponse'
+      tags:
+        - sampledata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SampleData'
+      description: Update SampleData
+components:
+  schemas:
+    SampleData:
+      title: SampleData
+      type: object
+      properties:
+        data_id:
+          type: string
+        value1:
+          type: number
+        value2:
+          type: integer
+        items:
+          type: string
+      description: Sample Data Model
+    SampleResponse:
+      title: SampleResponse
+      type: object
+      properties:
+        errorid:
+          type: string
+        level:
+          type: string
+        message:
+          type: string
