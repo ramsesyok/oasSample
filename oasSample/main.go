@@ -15,18 +15,30 @@ import (
 
 	app "oasSample/app"
 	openapi "oasSample/openapi"
+
+	"github.com/gobuffalo/packr"
+	"github.com/zserge/lorca"
 )
 
 func main() {
-	log.Printf("Server started")
+	go func() {
+		//log.Printf("Server started")
+		apiBox := packr.NewBox("./api")
+		swaggerBox := packr.NewBox("./html/ui")
+		SampledataApiService := app.NewSampledataApiService()
+		SampledataApiController := openapi.NewSampledataApiController(SampledataApiService)
 
-	SampledataApiService := app.NewSampledataApiService()
-	SampledataApiController := openapi.NewSampledataApiController(SampledataApiService)
+		router := openapi.NewRouter(SampledataApiController)
 
-	router := openapi.NewRouter(SampledataApiController)
+		router.PathPrefix("/ui/").Handler(http.StripPrefix("/ui/", http.FileServer(swaggerBox)))
+		router.PathPrefix("/api/").Handler(http.StripPrefix("/api/", http.FileServer(apiBox)))
 
-	router.PathPrefix("/ui/").Handler(http.StripPrefix("/ui/", http.FileServer(http.Dir("html/ui"))))
-	router.PathPrefix("/api/").Handler(http.StripPrefix("/api/", http.FileServer(http.Dir("api"))))
+		log.Fatal(http.ListenAndServe(":3000", router))
+	}()
+	var ui lorca.UI
+	ui, _ = lorca.New("", "", 1280, 768)
+	defer ui.Close()
 
-	log.Fatal(http.ListenAndServe(":3000", router))
+	ui.Load("http://localhost:3000/ui/")
+	<-ui.Done()
 }

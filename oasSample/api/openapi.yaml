@@ -6,59 +6,59 @@ info:
   title: OasSample
   version: "1.0"
 servers:
-- url: http://localhost:3000
+  - url: http://localhost:3000
 tags:
-- description: sampledata
-  name: sampledata
+  - description: sampledata
+    name: sampledata
 paths:
   /sampleData/{data_id}:
     get:
       description: Get SampleData
       operationId: get-sampleData-data_id
       parameters:
-      - explode: false
-        in: path
-        name: data_id
-        required: true
-        schema:
-          type: string
-        style: simple
+        - explode: false
+          in: path
+          name: data_id
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SampleData'
+                $ref: "#/components/schemas/SampleData"
           description: OK
       summary: Get SampleData
       tags:
-      - sampledata
+        - sampledata
     put:
       description: Update SampleData
       operationId: put-sampleData-data_id
       parameters:
-      - explode: false
-        in: path
-        name: data_id
-        required: true
-        schema:
-          type: string
-        style: simple
+        - explode: false
+          in: path
+          name: data_id
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SampleData'
+              $ref: "#/components/schemas/SampleData"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SampleResponse'
+                $ref: "#/components/schemas/SampleResponse"
           description: OK
       summary: Update SampleData
       tags:
-      - sampledata
+        - sampledata
 components:
   schemas:
     SampleData:
