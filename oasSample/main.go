@@ -25,5 +25,8 @@ func main() {
 
 	router := openapi.NewRouter(SampledataApiController)
 
+	router.PathPrefix("/ui/").Handler(http.StripPrefix("/ui/", http.FileServer(http.Dir("html/ui"))))
+	router.PathPrefix("/api/").Handler(http.StripPrefix("/api/", http.FileServer(http.Dir("api"))))
+
 	log.Fatal(http.ListenAndServe(":3000", router))
 }
