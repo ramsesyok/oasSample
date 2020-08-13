@@ -261,3 +261,10 @@ oasSample
 ---
 
 ここまでで、再度生成コマンドを実行しても、main.go も実装コマンドも上書きされることはない
+
+### swagger-ui の追加
+1. html/ui ディレクトリの追加
+2. html/uiにswagger-uiのファイルを追加
+3. main.go に　html/ui への 静的ファイル参照を追加
+4. main.go に　api/openapi.yaml (OpenAPI-Generatorが自動生成したyaml)　への静的ファイル参照を追加i
+5. html/ui/index.html のjavascript,css, openapi.yaml への参照を修正
